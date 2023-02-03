@@ -1,0 +1,55 @@
+<%- include('../partials/header.partial.ejs') %>
+
+<main class="container">
+    <h1 class="text-center text-purple my-5 mt-5">Edit Book</h1>
+       <div class="border p-5">
+          <form class="text-dark" method="POST" action="/editbookId">
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-2 col-form-label">Judul</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="judul">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Penulis</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="penulis">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Penerbit</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="penerbit">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Tahun Terbit</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="tahun">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Halaman</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="halaman">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">ISBN</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="isbn">
+              </div>
+            </div>
+            <div class="form-group row mb-5 text-end">
+              <div class="col-sm-10 ">
+                <button type="submit" class="btn btn-primary">Edit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+</main>
+
+<%- include('../partials/footer.partial.ejs') %>
+
+

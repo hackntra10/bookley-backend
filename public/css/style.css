@@ -1,0 +1,13 @@
+body {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:#fff;
+}
+
+.bg-purple {
+    background-color: #5E17EB ;
+}
+
+.text-purple {
+    color: #5E17EB;
+}
+
