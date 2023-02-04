@@ -25,9 +25,11 @@
                                     <p class="fs-8">tahun    : <%=book.tahun%></p>
                                     <p class="fs-8">halaman  : <%=book.halaman%></p>
                                     
-                                    <div>
-                                       <a href="/editbook/<%=book.id%>"><button type="submit">Edit</button></a>
-                                       <a href="/deletebook/<%=book.id%>"><button type="submit">Hapus</button></a>
+                                    <div class="m-auto">
+                                       <a href="/editbook/<%=book.id%>"><button class="btn btn-info"type="submit">Edit</button></a>
+                                       <form action="/deletebook/<%=book.id%>?_method=DELETE" method="POST">
+                                            <button class="btn btn-danger"type="submit">Hapus</button>
+                                       </form>
                                     </div>
                                 </div>
                             </div>

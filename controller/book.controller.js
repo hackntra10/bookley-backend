@@ -1,6 +1,6 @@
+const alert = require('../node_modules/node-popup');
 const db = require('../models');
 const Book = db.book;
-const Op = db.Sequelize.Op;
 
 const homeBook = (req, res) => {
       Book.findAll()
@@ -27,50 +27,32 @@ const addBook = (req, res) => {
 const addNewBook = async(req, res) => {
      
       if (!req.body.judul) {
-            res.status(500).json({
-                status: false,
-                message: 'Judul belum dimasukan'
-            })
+            res.redirect('/addbook')
             return;
       }
 
       if(!req.body.penulis) {
-            res.status(500).json({
-                status: false,
-                message: 'Penulis belum dimasukan'
-            })
+            res.redirect('/addbook')
             return;
       }
 
       if(!req.body.penerbit) {
-            res.status(500).json({
-                status: false,
-                message: 'Penerbit belum dimasukan'
-            })
+            res.redirect('/addbook')
             return;
       }
 
       if(!req.body.tahun) {
-            res.status(500).json({
-                status: false,
-                message: 'Tahun belum dimasukan'
-            })
+            res.redirect('/addbook')
             return;
       }
 
       if(!req.body.halaman) {
-            res.status(500).json({
-                status: false,
-                message: 'Halaman belum dimasukan'
-            })
+            res.redirect('/addbook')
             return;
       }
 
       if(!req.body.isbn) {
-            res.status(500).json({
-                status: false,
-                message: 'No ISBN belum dimasukan'
-            })
+            res.redirect('/addbook')
             return;
       }
   
@@ -85,11 +67,7 @@ const addNewBook = async(req, res) => {
 
       Book.create(tambahBuku)
          .then(data=> {
-            res.status(200).json({
-                  status: true,
-                  message: "Buku berhasil ditambahkan",
-                  data
-            })
+            res.redirect('/')
          })
          .catch(err => {
             res.status(500).send({
@@ -97,12 +75,6 @@ const addNewBook = async(req, res) => {
                 message: err.message ||'Buku gagal ditambahkan'
             })
          })
-}
-
-const getBook = (req, res) => {
-      res.render('searchBook', {
-            titleBar: 'searchBook'
-      })
 }
 
 const getBookId = (req, res) => {
@@ -198,18 +170,6 @@ const editBookId = (req, res) => {
           })
 }
 
-const showBook = (req, res) => {
-      res.render('showBook', {
-            titleBar: 'showBook'
-      })
-}
-
-const deleteBook = (req, res) => {
-      res.render('deleteBook', {
-            titleBar: 'deleteBook'
-      })
-}
-
 const deleteBookId = (req, res) => {
       const id = req.params.bookId;
 
@@ -218,9 +178,7 @@ const deleteBookId = (req, res) => {
       })
       .then(num => {
             if(num == 1) {
-                  res.send({
-                        message: 'Buku Berhasil dihapus'
-                  });
+                  res.redirect('/')
             } else {
                   res.send({
                         message: 'Buku tidak dapat dihapus'
@@ -238,12 +196,9 @@ module.exports = {
     homeBook,
     addBook,
     addNewBook,
-    getBook,
     getBookId,
     editBook,
     getEditBook,
     editBookId,
-    showBook,
-    deleteBook,
     deleteBookId
 }

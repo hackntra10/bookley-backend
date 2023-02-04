@@ -20,6 +20,7 @@
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "method-override": "^3.0.0",
+    "node-popup": "^0.1.14",
     "pg": "^8.9.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.28.0"
