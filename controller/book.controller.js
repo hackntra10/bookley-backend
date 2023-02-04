@@ -3,9 +3,19 @@ const Book = db.book;
 const Op = db.Sequelize.Op;
 
 const homeBook = (req, res) => {
-      res.render('index', {
-            titleBar: 'home'
-      })
+      Book.findAll()
+       .then(data => {
+            res.render('index', {
+                  titleBar: 'home', 
+                  bookData : data
+            })
+       })
+       .catch(err=> {
+            res.status(500).send({
+                  message: err.message || "Telah terjadi error"
+            })
+       })
+
 }
 
 const addBook = (req, res) => {     
@@ -116,9 +126,54 @@ const getBookId = (req, res) => {
 }
 
 const editBook = (req, res) => {
-      res.render('editBook',{
-            titleBar: 'editBook'
+      const id = req.params.bookId;
+
+      Book.findByPk(id)
+        .then(data => {
+            if (data) {
+              res.render('editBook',{
+                  titleBar: 'editBook', 
+                  id : data.id,
+                  judul : data.judul,
+                  penulis: data.penulis,
+                  penerbit: data.penerbit,
+                  tahun: data.tahun,
+                  halaman: data.halaman,
+                  isbn: data.isbn
+            })
+            } else {
+              res.status(404).send({
+                message: 'Cannot find Book'
+              });
+            }
+          })
+          .catch(err => {
+            res.status(500).send({
+              message: "Error retrieving Tutorial with id" || err
+            });
+          });
+}
+
+const getEditBook = (req,res) => {
+      const id = req.params.bookId;
+
+      Book.findByPk(id)
+      .then(data => {
+        if (data) {
+          res.redirect(`/editbook/${id}`,{
+            books : data
+          });
+        } else {
+          res.status(404).send({
+            message: `Cannot find Book with id=${id}.`
+          });
+        }
       })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error retrieving book with id=" + id
+        });
+      });
 }
 
 const editBookId = (req, res) => {
@@ -129,9 +184,7 @@ const editBookId = (req, res) => {
       })
        .then(num=> {
             if(num==1){
-                  res.send({
-                        message: "Book was updated successfully"
-                  });
+                  res.redirect(`/editbook/${id}`)
             } else {
                   res.send({
                         message: `Cannot update Book with id=${id}. Maybe Tutorial was not found or req.body is empty`
@@ -188,6 +241,7 @@ module.exports = {
     getBook,
     getBookId,
     editBook,
+    getEditBook,
     editBookId,
     showBook,
     deleteBook,

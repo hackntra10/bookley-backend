@@ -1,19 +1,39 @@
 <%- include('../partials/header.partial.ejs') %>
-    <main class="containter">
+    <main class="">
          <div class="bg-purple p-5 text-center">
             <h1 class="fs-6 my-5">Hello, world!</h1>
             <p class="">This is bookley, place to search and save your book data information who you like and needed nothing problem</p>
             <hr class="my-4">
-            <form class="input-group mb-3 my-5">
-                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                  <button class="btn bg-purple text-white" type="button" id="button-addon2">Button</button>
-                </div>
-            </form>
           </div>
 
           <div>
              <h1 class="text-purple text-center my-5"># Your Save Book</h1>
+          </div>
+
+          <div class="container">
+                <div class="row ms-auto">
+                     <% bookData.forEach(function(book) {%>
+                          <div class="col-5 p-4 border m-4 shadow-sm p-3 mb-2 bg-white rounded">
+                            <div class="row text-dark">
+                                <div class="col-5">
+                                    <img class="w-100" src="/img/bookley.png">
+                                </div>
+                                <div class="col-7">
+                                    <p class="fs-8">Judul    : <%=book.judul%></p>
+                                    <p class="fs-8">Penulis  : <%=book.penulis%></p>
+                                    <p class="fs-8">Penerbit : <%=book.penerbit%></p>
+                                    <p class="fs-8">tahun    : <%=book.tahun%></p>
+                                    <p class="fs-8">halaman  : <%=book.halaman%></p>
+                                    
+                                    <div>
+                                       <a href="/editbook/<%=book.id%>"><button type="submit">Edit</button></a>
+                                       <a href="/deletebook/<%=book.id%>"><button type="submit">Hapus</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                      <% }) %>
+                </div>
           </div>
     </main>
 
